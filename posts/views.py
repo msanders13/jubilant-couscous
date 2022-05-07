@@ -21,7 +21,12 @@ class PostDetailView(DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
         template_name = 'posts/new.html'
         model = Post 
-        fields = ['title', 'author','body']
+        fields = ['title','body']
+
+        def form_valid(self, form):
+            form.instance.author = self.request.user
+            return super().form_valid(form)
+            
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'posts/edit.html'

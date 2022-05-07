@@ -33,7 +33,22 @@
                 </li>
                     <li class="nav-item">
                     <a class="nav-link" href="{% url 'post_new' %}">New Post</a>
-                </li>    
+                </li> 
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'password_change' %}">Change Password</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                </li>  
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                </li>  
+                {% endif %}
             </ul>
             </div>
         </div>
